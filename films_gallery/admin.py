@@ -15,5 +15,12 @@ class GenreAdmin(admin.ModelAdmin):
 	prepopulated_fields = {"slug": ("name",)}
 
 
+class ProducerAdmin(admin.ModelAdmin):
+	list_display = ('id', 'name')
+	list_display_links = ('id', 'name')
+	prepopulated_fields = {"slug": ("name",)}
+
+
 admin.site.register(Film, FilmAdmin)
 admin.site.register(Genre, GenreAdmin)
+admin.site.register(Producer, ProducerAdmin)

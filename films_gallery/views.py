@@ -24,7 +24,6 @@ class FilmCategory(ListView):
 	model = Film
 	template_name = 'films_gallery/index.html'
 	context_object_name = 'films'
-	allow_empty = False
 
 	def get_context_data(self, *, object_list=None, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -46,3 +45,10 @@ class ShowFilm(DetailView):
 class AddFilm(CreateView):
 	form_class = AddFilmForm
 	template_name = 'films_gallery/addpage.html'
+
+
+class ShowProducer(DetailView):
+	model = Producer
+	template_name = 'films_gallery/info_producer.html'
+	slug_url_kwarg = 'producer_slug'
+	context_object_name = "producer"

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block add_css %}
+{%load static%}
+<link type="text/css" href="{% static 'films_gallery/css/info.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block title %} {{producer.name}} {% endblock %}
+
+{% block content %}
+<div class="card text-center">
+    <div class="card-header">
+        <b>{{producer.name}}</b>
+    </div>
+    <div class="card-body">
+        {% if producer.photo %}
+        <img class="card-img-top" src="{{producer.photo.url}}" alt="..." style="height:500px; width: auto;">
+        {% else %}
+        {%endif%}
+        <p class="card-text">Место рождения: <b>{{producer.place_of_birth}}</b></p>
+        <p class="card-text">Дата рождения: <b>{{producer.date_of_birth}}</b></p>
+        <p class="card-text"><i> Жанры:
+            {% for genre in producer.genre.all%}
+            <a href="{{genre.get_absolute_url}}"><b>{{genre}}</b></a>
+            {%endfor%}
+        </i></p>
+    </div>
+    <div class="card-footer text-muted">
+        <i>{{producer.date_of_birth}}</i>
+    </div>
+</div>
+{% endblock %}

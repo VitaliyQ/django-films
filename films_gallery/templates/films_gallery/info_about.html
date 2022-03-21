@@ -11,7 +11,7 @@
 {% block content %}
 <div class="card text-center">
     <div class="card-header">
-            {{film.genre.all|join:", "}}
+        {{film.genre.all|join:", "}}
     </div>
     <div class="card-body">
         {% if film.photo %}
@@ -22,7 +22,11 @@
 
         <p class="card-text">{{film.content}}</p>
         <p class="card-text"><i> Продолжительность: <b>{{film.time}}</b> мин.</i></p>
-        <p class="card-text"><i> Кассовые сборы: <b>{{film.fees}}</b>$.</i></p>
+        <p class="card-text"><i> Режиссер:
+            {% for prod in film.producer.all%}
+            <a href="{{prod.get_absolute_url}}"><b>{{prod}}</b></a>
+            {%endfor%}
+        </i></p>
         <p class="card-text"><i> Рейтинг: <b>{{film.rating}}</b> из 100.</i></p>
     </div>
     <div class="card-footer text-muted">

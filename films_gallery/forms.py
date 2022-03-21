@@ -5,7 +5,7 @@ from .models import *
 class AddFilmForm(forms.ModelForm):
 	class Meta:
 		model = Film
-		fields = ['title', 'en_title', 'slang', 'slug', 'content', 'date_publisher', 'time', 'rating', 'genre', 'photo']
+		fields = ['title', 'en_title', 'slang', 'slug', 'content', 'date_publisher', 'time', 'rating', 'genre', 'photo', 'producer']
 		widgets = {
 			'title': forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Название фильмы'}),
 			'en_title': forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Название на английской'}),
