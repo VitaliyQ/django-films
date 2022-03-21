@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block add_css %}
+{%load static%}
+<link type="text/css" href="{% static 'films_gallery/css/info.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block title %} {{film.title}} {% endblock %}
+
+{% block content %}
+<div class="card text-center">
+    <div class="card-header">
+            {{film.genre.all|join:", "}}
+    </div>
+    <div class="card-body">
+        {% if film.photo %}
+        <img class="card-img-top" src="{{film.photo.url}}" alt="..." style="height:500px; width: auto;">
+        {% else %}
+        {%endif%}
+        <h5 class="card-title">{{film.title}}</h5>
+
+        <p class="card-text">{{film.content}}</p>
+        <p class="card-text"><i> Продолжительность: <b>{{film.time}}</b> мин.</i></p>
+        <p class="card-text"><i> Кассовые сборы: <b>{{film.fees}}</b>$.</i></p>
+        <p class="card-text"><i> Рейтинг: <b>{{film.rating}}</b> из 100.</i></p>
+    </div>
+    <div class="card-footer text-muted">
+        <i>{{film.date_publisher}}</i>
+    </div>
+</div>
+{% endblock %}

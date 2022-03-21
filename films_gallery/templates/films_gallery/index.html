@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'films_gallery/css/index.css'%}">
+{% endblock %}
+
+{% block title %} Главная {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for film in films %}
+        <div class="col-xl-4 col-md-6 col-12">
+            <a href="{{ film.get_absolute_url }}" style="text-decoration:none">
+                <div class="card shadow">
+                    {% if film.photo %}
+                    <img class="card-img-top" src="{{film.photo.url}}" alt="...">
+                    {% else %}
+                    {%endif%}
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center">{{film.title}}</h5>
+                        <p class="card-text"><i> Рейтинг:</i></p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{film.rating}}%;"
+                                 aria-valuemin="0" aria-valuemax="100">{{film.rating}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

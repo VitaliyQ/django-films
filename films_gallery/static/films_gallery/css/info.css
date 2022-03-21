@@ -1,0 +1,25 @@
+.card-body{
+    margin-left:5%;
+    margin-right:5%;
+}
+div.card{
+    width:100%;
+}
+
+div.card-body{
+    color:black;
+    margin-left:0px;
+    padding: 0 15%;
+    background-color: #EAE7DC;
+    width:100%;
+}
+
+div.card-header{
+    color:black;
+    background-color: #D8C3A5;
+}
+
+div.card-footer{
+
+    background-color: #D8C3A5;
+}

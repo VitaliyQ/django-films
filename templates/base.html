@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link type="text/css" href="{% static 'css/base.css'%}" rel="stylesheet">
+
+    {% block add_css %} {% endblock %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.2.1/flexboxgrid2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"></script>
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<nav class="navbar shadow p-3 ">
+    <div class="container-fluid d-flex justify-content-around">
+        <a class="navbar-brand" href="{% url 'home' %}">VF</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Фильмы</a>
+        <a class="navbar-brand" href="{% url 'add-film' %}">Добавить фильм</a>
+
+    </div>
+</nav>
+<body style="background-color: #8E8D8A">
+
+<div class="content d-flex flex-direction-row">
+    {%if is_cat_selected == 0%}
+    <div class="block-menu">
+        <div class="container" style=" position: sticky; top:5px ">
+            {% for item in items %}
+            <div class="row">
+                <a class="navbar-brand" href="{{item.get_absolute_url}}">{{item}}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div class="block-menu">
+        <div class="container" style=" position: sticky; top:5px ">
+            <div class="row">
+                <a class="navbar-brand" href="{%url 'home'%}">На главную</a>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+<footer class="footer shadow">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 mt-5">
+                <h1>VF</h1>
+            </div>
+        </div>
+
+    </div>
+</footer>
+
+</footer>
+</html>

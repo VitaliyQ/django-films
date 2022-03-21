@@ -1,0 +1,40 @@
+div.card {
+    background-color: #EAE7DC;
+    width: 18rem;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    transition: 0.5s;
+}
+
+div.container {
+    margin-top: 10px;
+}
+
+
+
+div.card:hover {
+    transform: scale(1.05);
+}
+
+h5.card-title{
+    color: black;
+    text-align:center;
+}
+
+p.card-text {
+    color: black;
+    text-align:center;
+}
+
+div.progress-bar{
+     color: black;
+     background-color: #E98074;
+}
+
+
+
+
+
+
+
+
