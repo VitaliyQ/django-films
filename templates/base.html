@@ -26,16 +26,20 @@
     <div class="container-fluid d-flex justify-content-around">
         <a class="navbar-brand" href="{% url 'home' %}">VF</a>
         <a class="navbar-brand" href="{% url 'home' %}">Фильмы</a>
-        <a class="navbar-brand" href="{% url 'add-film' %}">Добавить фильм</a>
+
 
     </div>
 </nav>
 <body style="background-color: #8E8D8A">
 
-<div class="content d-flex flex-direction-row">
+<div class="content d-flex flex-direction-row  justify-content-space-between">
     {%if is_cat_selected == 0%}
     <div class="block-menu">
         <div class="container" style=" position: sticky; top:5px ">
+             <div class="row">
+                <a class="navbar-brand" href="{%url 'home'%}">На главную</a>
+                 <a class="navbar-brand" href="{% url 'add-film' %}">Добавить фильм</a>
+            </div>
             {% for item in items %}
             <div class="row">
                 <a class="navbar-brand" href="{{item.get_absolute_url}}">{{item}}</a>
@@ -59,7 +63,7 @@
 </body>
 <footer class="footer shadow">
     <div class="container">
-        <div class="row ">
+        <div class="row">
             <div class="col-12 mt-5">
                 <h1>VF</h1>
             </div>

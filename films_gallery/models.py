@@ -19,16 +19,15 @@ class Genre(models.Model):
 
 class Film(models.Model):
 	title = models.CharField(max_length=50, unique=True, verbose_name='Название фильма')
-	en_title = models.CharField(max_length=50, null=True)
-	slang = models.CharField(max_length=255, null=True, default=None)
+	en_title = models.CharField(blank=True, max_length=50, null=True, verbose_name="Название на английском")
+	slang = models.CharField(blank=True, max_length=255, null=True, default=None, verbose_name='Краткое описание')
 	slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
-	content = models.TextField()
-	photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name='Фото')
-	date_publisher = models.DateField()
-	time = models.IntegerField()
-	is_published = models.BooleanField()
-	rating = models.IntegerField(default=0)
-	genre = models.ManyToManyField('Genre')
+	content = models.TextField(verbose_name='Описание фильма')
+	photo = models.ImageField(blank=True, upload_to="photos/%Y/%m/%d/", null=True, verbose_name='Фото')
+	date_publisher = models.DateField(verbose_name='Дата выхода фильма')
+	time = models.IntegerField(blank=True, verbose_name='Длительность фильма')
+	rating = models.IntegerField(default=0, verbose_name='Рейтинг фильма (0, 100)')
+	genre = models.ManyToManyField('Genre', verbose_name='Жанр')
 
 	def get_absolute_url(self):
 		return reverse('info-about', kwargs={"film_slug": self.slug})

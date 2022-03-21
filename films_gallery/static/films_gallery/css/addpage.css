@@ -1,0 +1,38 @@
+div.container-add {
+   margin: 1%;
+   width: 98%;
+   background-color: #EAE7DC;
+   padding: 5%;
+}
+form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-input{
+    height:200px;
+    width:500px;
+
+}
+
+
+input.form-input{
+    text-align:center;
+}
+
+p{
+    text-align:center;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+.genre-choose{
+    height: 300px;
+    width: 300px;
+}
+
+.form-error {
+    color: red;
+    text-decoration: underline;
+}

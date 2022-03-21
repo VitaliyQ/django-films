@@ -28,24 +28,11 @@ div.block-menu{
     text-align: center;
     position: sticky;
     top:5px;
+    overflow: scroll;
 }
-footer.footer{
+
+footer{
     background-color: #EAE7DC;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-.content {
-flex:1 0 auto;
 }
 
 body{
@@ -55,15 +42,6 @@ body{
     background-color: #FCAE3E;
 }
 
-
-footer {
-    flex: 0 0 auto;
-    background-color: #D79B59;
-}
-
-footer h1{
-    color: #1D1A29;
-}
 
 
 
