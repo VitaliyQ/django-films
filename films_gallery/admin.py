@@ -16,4 +16,4 @@ class GenreAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Film, FilmAdmin)
-admin.site.register(Genre)
+admin.site.register(Genre, GenreAdmin)

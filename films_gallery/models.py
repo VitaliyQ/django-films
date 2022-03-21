@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Genre(models.Model):
-	name = models.CharField(max_length=30)
+	name = models.CharField(max_length=30, unique=True, verbose_name="Название")
 	slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
 
 	def get_absolute_url(self):
@@ -33,7 +33,7 @@ class Film(models.Model):
 		return reverse('info-about', kwargs={"film_slug": self.slug})
 
 	def __str__(self):
-		return f"{self.title}, дата премьеры - {self.date_publisher}, рейтинг - {self.rating}"
+		return f"{self.id}. {self.title}, дата премьеры - {self.date_publisher}, рейтинг - {self.rating}"
 
 	def __repr__(self):
 		return self.title
