@@ -1,29 +1,38 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView
 
 from .forms import *
 from .models import *
 
 
-def index(request):
-	genres = Genre.objects.all()
-	films = Film.objects.all()
-	data = {
-		"films": films,
-		'items': genres,
-		'is_cat_selected': 0
-	}
-	return render(request, 'films_gallery/index.html', context=data)
+class FilmHome(ListView):
+	model = Film
+	template_name = 'films_gallery/index.html'
+	context_object_name = 'films'
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['items'] = Genre.objects.all()
+		context['is_cat_selected'] = 0
+		context['title'] = 'Фильмы'
+		return context
 
 
-def show_genre(request, genre_slug):
-	films = Film.objects.filter(genre=Genre.objects.get(slug=genre_slug))
-	data = {
-		"films": films,
-		'is_cat_selected': 1
-	}
-	return render(request, 'films_gallery/index.html', context=data)
+class FilmCategory(ListView):
+	model = Film
+	template_name = 'films_gallery/index.html'
+	context_object_name = 'films'
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['is_cat_selected'] = 1
+		context['title'] = str(self.kwargs['genre_slug'])
+		return context
+
+	def get_queryset(self):
+		return Film.objects.filter(genre__slug=self.kwargs['genre_slug'])
 
 
 def info_about_film(request, film_slug):

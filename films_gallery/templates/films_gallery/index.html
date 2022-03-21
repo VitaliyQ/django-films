@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{% static 'films_gallery/css/index.css'%}">
 {% endblock %}
 
-{% block title %} Главная {% endblock %}
+{% block title %} {{title}} {% endblock %}
 
 {% block content %}
 <div class="container">
@@ -15,7 +15,7 @@
             <a href="{{ film.get_absolute_url }}" style="text-decoration:none">
                 <div class="card shadow">
                     {% if film.photo %}
-                    <img class="card-img-top" src="{{film.photo.url}}" alt="...">
+                    <img class="card-img-top" src="{{film.photo.url}}">
                     {% else %}
                     {%endif%}
                     <div class="card-body">
