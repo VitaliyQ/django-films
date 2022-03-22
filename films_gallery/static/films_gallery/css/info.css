@@ -20,6 +20,14 @@ div.card-header{
 }
 
 div.card-footer{
-
     background-color: #D8C3A5;
+}
+
+.genre a, .prod a{
+    color:black;
+    text-decoration: none;
+    transition:0.5s;
+}
+.genre a:hover, .prod a:hover{
+    color:#F64C72;
 }

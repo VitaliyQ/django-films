@@ -8,6 +8,7 @@ from .models import *
 
 
 class FilmHome(ListView):
+	paginate_by = 9
 	model = Film
 	template_name = 'films_gallery/index.html'
 	context_object_name = 'films'
@@ -20,7 +21,8 @@ class FilmHome(ListView):
 		return context
 
 
-class FilmCategory(ListView):
+class FilmGenre(ListView):
+	paginate_by = 9
 	model = Film
 	template_name = 'films_gallery/index.html'
 	context_object_name = 'films'

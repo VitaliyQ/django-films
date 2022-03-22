@@ -9,6 +9,34 @@
 
 {% block content %}
 <div class="container">
+    {%if page.obj.has_other_pages%}
+    {%else%}
+    <nav aria-label="Page navigation example" class="mypag">
+        <ul class="pagination">
+            {%if page_obj.number != 1%}
+            <li class="page"><a class="page-link button" href="?page={{1}}">В начало</a></li>
+            {%endif%}
+            {%if page_obj.has_previous%}
+            <li class="page"><a class="page-link button" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
+            </li>
+            {%endif%}
+            {% for p in paginator.page_range%}
+            {% if page_obj.number == p%}
+            <li class="page"><a class="page-link page_selected" href="?page={{p}}">{{p}}</a></li>
+            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <li class="page"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {%if page_obj.has_next%}
+            <li class="page"><a class="page-link button" href="?page={{page_obj.next_page_number}}">Следующая</a></li>
+            {%endif%}
+            {%if page_obj.number != paginator.num_pages%}
+            <li class="page"><a class="page-link button" href="?page={{paginator.num_pages}}">В конец</a></li>
+            {%else%}
+            {%endif%}
+        </ul>
+    </nav>
+    {%endif%}
     <div class="row">
         {% for film in films %}
         <div class="col-xl-4 col-md-6 col-12">
@@ -32,6 +60,34 @@
         </div>
         {% endfor %}
     </div>
+    {%if page.obj.has_other_pages%}
+    {%else%}
+    <nav aria-label="Page navigation example" class="mypag">
+        <ul class="pagination">
+            {%if page_obj.number != 1%}
+            <li class="page"><a class="page-link button" href="?page={{1}}">В начало</a></li>
+            {%endif%}
+            {%if page_obj.has_previous%}
+            <li class="page"><a class="page-link button" href="?page={{page_obj.previous_page_number}}">Предыдущая</a>
+            </li>
+            {%endif%}
+            {% for p in paginator.page_range%}
+            {% if page_obj.number == p %}
+            <li class="page"><a class="page-link page_selected" href="?page={{p}}">{{p}}</a></li>
+            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <li class="page"><a class="page-link" href="?page={{p}}">{{p}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {%if page_obj.has_next%}
+            <li class="page"><a class="page-link button" href="?page={{page_obj.next_page_number}}">Следующая</a></li>
+            {%endif%}
+            {%if page_obj.number != paginator.num_pages%}
+            <li class="page"><a class="page-link button" href="?page={{paginator.num_pages}}">В конец</a></li>
+            {%else%}
+            {%endif%}
+        </ul>
+    </nav>
+    {%endif%}
 </div>
 
 {% endblock %}

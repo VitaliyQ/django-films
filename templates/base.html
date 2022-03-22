@@ -36,9 +36,9 @@
     {%if is_cat_selected == 0%}
     <div class="block-menu">
         <div class="container" style=" position: sticky; top:5px ">
-             <div class="row">
+            <div class="row">
                 <a class="navbar-brand" href="{%url 'home'%}">На главную</a>
-                 <a class="navbar-brand" href="{% url 'add-film' %}">Добавить фильм</a>
+                <a class="navbar-brand" href="{% url 'add-film' %}">Добавить фильм</a>
             </div>
             {% for item in items %}
             <div class="row">
@@ -59,6 +59,7 @@
     {% block content %}
     {% endblock %}
 </div>
+
 
 </body>
 <footer class="footer shadow">
