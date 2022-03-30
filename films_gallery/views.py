@@ -1,6 +1,7 @@
-from django.core.paginator import Paginator
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.contrib.auth import logout, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView, CreateView
 
 from .forms import *
@@ -54,3 +55,22 @@ class ShowProducer(DetailView):
 	template_name = 'films_gallery/info_producer.html'
 	slug_url_kwarg = 'producer_slug'
 	context_object_name = "producer"
+
+
+class RegisterUser(CreateView):
+	form_class = RegisterForm
+	template_name = 'films_gallery/register.html'
+
+	def form_valid(self, form):
+		user = form.save()
+		login(self.request, user)
+		return redirect('home')
+
+
+class LoginUser(LoginView):
+	form_class = AuthenticationForm
+	template_name = 'films_gallery/login.html'
+
+def logout_user(request):
+	logout(request)
+	return redirect('login')

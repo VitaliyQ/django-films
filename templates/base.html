@@ -26,7 +26,17 @@
     <div class="container-fluid d-flex justify-content-around">
         <a class="navbar-brand" href="{% url 'home' %}">VF</a>
         <a class="navbar-brand" href="{% url 'home' %}">Фильмы</a>
-
+        {% if request.user.is_authenticated %}
+        <div>
+            <a class="navbar-brand">Привет, {{user.username}}</a>
+            <a class="navbar-brand" href="{% url 'logout' %}">Выйти</a>
+        </div>
+        {% else %}
+        <div>
+            <a class="navbar-brand" href="{% url 'register' %}">Регистрация</a>
+            <a class="navbar-brand" href="{% url 'login' %}">Авторизация</a>
+        </div>
+        {% endif%}
 
     </div>
 </nav>
