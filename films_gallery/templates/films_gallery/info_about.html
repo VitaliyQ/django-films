@@ -15,7 +15,8 @@
     </div>
     <div class="card-body">
         {% if film.photo %}
-        <img class="card-img-top" src="{{film.photo.url}}" alt="..." style="height:500px; width: auto; margin-top: 2rem;">
+        <img class="card-img-top" src="{{film.photo.url}}" alt="..."
+             style="height:500px; width: auto; margin-top: 2rem;">
         {% else %}
         {%endif%}
         <p class="card-text" style="margin-top:2rem;">{{film.content}}</p>
@@ -31,10 +32,48 @@
         </i></p>
         <p class="card-text"><i> Продолжительность: <b>{{film.time}}</b> мин.</i></p>
         <p class="card-text" style="margin-bottom:2rem;"><i> Рейтинг: <b>{{film.rating}}</b> из 100.</i></p>
+
     </div>
     <div class="card-footer text-muted">
         Дата премьеры:
         <i>{{film.date_publisher}}</i>
+    </div>
+    <div class="comments">
+        <ul class="list-group list-group-flush">
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'addcomment' film.slug request.user.pk%}" method="post" class="comments_form">
+                {% csrf_token %}
+                {{form}}
+                <label class="form-label" id="add" for="text">Добавить отзыв</label>
+                <textarea class="form-control" type="text" id="text" name="text" rows="7" placeholder="Введите текст вашего отзыва..."></textarea>
+                <button class="btn btn-primary" id="save_btn" type="submit">Добавить отзыв</button>
+            </form>
+
+            {% for com in film.comment.all %}
+            <li class="list-group-item" style="background-color: #D8C3A5;">
+                <div class="card" >
+                    <div class="card-body" >
+                        <h5 class="card-title">{{com.user}}</h5>
+                        <p class="card-text">{{com.content}}</p>
+                        <p class="card-text">Дата создания отзыва: {{com.date}}</p>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            {%else%}
+            {% for com in film.comment.all %}
+            <li class="list-group-item" style="background-color: #D8C3A5;">
+                <div class="card" >
+                    <div class="card-body" >
+                        <h5 class="card-title">{{com.user}}</h5>
+                        <p class="card-text">{{com.content}}</p>
+                        <p class="card-text">Дата создания отзыва: {{com.date}}</p>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+            {%endif%}
+        </ul>
     </div>
 </div>
 {% endblock %}
