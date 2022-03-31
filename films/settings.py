@@ -51,7 +51,7 @@ MIDDLEWARE = [
 	"whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
 
 ROOT_URLCONF = 'films.urls'
 
@@ -121,11 +121,13 @@ import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 
-STATIC_URL = 'static/'
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-	BASE_DIR / 'static',
-	BASE_DIR / 'films_gallery/static'
+	os.path.join(BASE_DIR, 'static'),
+	os.path.join(BASE_DIR, 'films_gallery/static')
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
