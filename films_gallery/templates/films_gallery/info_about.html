@@ -44,14 +44,14 @@
             <form action="{% url 'addcomment' film.slug request.user.pk%}" method="post" class="comments_form">
                 {% csrf_token %}
                 {{form}}
-                <label class="form-label" id="add" for="text">Добавить отзыв</label>
-                <textarea class="form-control" type="text" id="text" name="text" rows="7" placeholder="Введите текст вашего отзыва..."></textarea>
-                <button class="btn btn-primary" id="save_btn" type="submit">Добавить отзыв</button>
+                <label class="form-label shadow" id="add" for="text">Добавить отзыв</label>
+                <textarea class="form-control shadow" type="text" id="text" name="text" rows="7" placeholder="Введите текст вашего отзыва..."></textarea>
+                <button class="btn btn-primary shadow" id="save_btn" type="submit">Добавить отзыв</button>
             </form>
 
             {% for com in film.comment.all %}
             <li class="list-group-item" style="background-color: #D8C3A5;">
-                <div class="card" >
+                <div class="card shadow" >
                     <div class="card-body" >
                         <h5 class="card-title">{{com.user}}</h5>
                         <p class="card-text">{{com.content}}</p>

@@ -8,6 +8,26 @@ from .forms import *
 from .models import *
 
 
+class SearchFilm(ListView):
+	model = Film
+	template_name = 'films_gallery/index.html'
+	context_object_name = 'films'
+
+	def get_context_data(self, *, object_list=None, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context['is_cat_selected'] = 1
+		context['title'] = 'Поиск'
+		return context
+
+	def get_queryset(self):
+		if self.request.GET.get('search'):
+			search_word = self.request.GET.get('search')
+			films_objects = Film.objects.filter(title__icontains=search_word)
+			return films_objects
+		else:
+			return Film.objects.all()
+
+
 class FilmHome(ListView):
 	paginate_by = 9
 	model = Film
@@ -78,7 +98,6 @@ def logout_user(request):
 
 
 def addcomment(request, film_slug, user_id):
-	print(user_id, film_slug)
 	if request.POST['text'] != '':
 		film = Film.objects.get(slug=film_slug)
 		comment = Comment.objects.create(content=request.POST['text'], user=User.objects.get(pk=user_id))

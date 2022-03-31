@@ -54,7 +54,7 @@ class Film(models.Model):
 	rating = models.IntegerField(default=0, verbose_name='Рейтинг фильма (0, 100)')
 	genre = models.ManyToManyField('Genre', verbose_name='Жанр')
 	producer = models.ManyToManyField('Producer', blank=False, verbose_name='Режиссер')
-	comment = models.ManyToManyField('Comment', null=True)
+	comment = models.ManyToManyField('Comment')
 
 	def get_absolute_url(self):
 		return reverse('info-about', kwargs={"film_slug": self.slug})
