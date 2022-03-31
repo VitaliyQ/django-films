@@ -3,7 +3,7 @@ from .views import *
 
 urlpatterns = [
 	path('', FilmHome.as_view(), name='home'),
-	path('search/', SearchFilm.as_view(), name='search'),
+	path('/search/', SearchFilm.as_view(), name='search'),
 	path('<slug:genre_slug>/', FilmGenre.as_view(), name='show-genre'),
 	path('about/<slug:film_slug>', ShowFilm.as_view(), name='info-about'),
 	path('add', AddFilm.as_view(), name='add-film'),
