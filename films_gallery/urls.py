@@ -10,4 +10,5 @@ urlpatterns = [
 	path('login', LoginUser.as_view(), name="login"),
 	path('logout', logout_user, name="logout"),
 	path('producer/<slug:producer_slug>', ShowProducer.as_view(), name='info-producer'),
+	path('addcomment/<slug:film_slug>/<int:user_id>', addcomment, name='addcomment')
 ]

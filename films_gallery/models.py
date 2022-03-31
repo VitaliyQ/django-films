@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Genre(models.Model):
@@ -16,6 +17,7 @@ class Genre(models.Model):
 		verbose_name = 'Жанры'
 		verbose_name_plural = 'Жанры'
 		ordering = ['name']
+
 
 class Producer(models.Model):
 	name = models.CharField(max_length=30, blank=False, unique=True, verbose_name="Имя")
@@ -40,7 +42,6 @@ class Producer(models.Model):
 		ordering = ['name']
 
 
-
 class Film(models.Model):
 	title = models.CharField(max_length=50, blank=True, unique=True, verbose_name='Название фильма')
 	en_title = models.CharField(blank=True, max_length=50, null=True, verbose_name="Название на английском")
@@ -53,6 +54,7 @@ class Film(models.Model):
 	rating = models.IntegerField(default=0, verbose_name='Рейтинг фильма (0, 100)')
 	genre = models.ManyToManyField('Genre', verbose_name='Жанр')
 	producer = models.ManyToManyField('Producer', blank=False, verbose_name='Режиссер')
+	comment = models.ManyToManyField('Comment', null=True)
 
 	def get_absolute_url(self):
 		return reverse('info-about', kwargs={"film_slug": self.slug})
@@ -69,3 +71,18 @@ class Film(models.Model):
 		ordering = ['title']
 
 
+class Comment(models.Model):
+	content = models.TextField(verbose_name='Комментарий', max_length=500)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+	date = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return f"{self.id}. {self.content}"
+
+	def __repr__(self):
+		return self.content
+
+	class Meta:
+		verbose_name = 'Коментарии'
+		verbose_name_plural = 'Коментарии'
+		ordering = ['film']

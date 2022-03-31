@@ -71,6 +71,16 @@ class LoginUser(LoginView):
 	form_class = AuthenticationForm
 	template_name = 'films_gallery/login.html'
 
+
 def logout_user(request):
 	logout(request)
 	return redirect('login')
+
+
+def addcomment(request, film_slug, user_id):
+	print(user_id, film_slug)
+	if request.POST['text'] != '':
+		film = Film.objects.get(slug=film_slug)
+		comment = Comment.objects.create(content=request.POST['text'], user=User.objects.get(pk=user_id))
+		film.comment.add(comment)
+	return redirect("info-about", film_slug=film_slug)

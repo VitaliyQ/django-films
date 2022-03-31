@@ -24,3 +24,4 @@ class ProducerAdmin(admin.ModelAdmin):
 admin.site.register(Film, FilmAdmin)
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Producer, ProducerAdmin)
+admin.site.register(Comment)
