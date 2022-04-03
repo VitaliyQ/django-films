@@ -9,12 +9,14 @@
 
 {% block content %}
 <div class="container">
+    {% if is_cat_selected == 0%}
     <div class="search">
         <form action="{%url 'search'%}" method="get">
             <input class="shadow" name="search" type="text" placeholder="Поиск...">
             <button class="btn btn-primary shadow" id="search_btn" type="submit">Поиск</button>
         </form>
     </div>
+    {%endif%}
     {%if page.obj.has_other_pages%}
     {%else%}
     <nav aria-label="Page navigation example" class="mypag">
